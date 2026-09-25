@@ -1,9 +1,11 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import style from "./Auth.module.css"
 import { useState } from "react";
 import axios from "axios";
 
 function Register() {
+  const nav = useNavigate()
+
   const [show, setShow] = useState(false)  
   const [data, setData] = useState({
     name: "",
@@ -17,7 +19,7 @@ function Register() {
           "Content-Type": "application/json"
         }
       })
-      console.log(response.data)
+      nav('/login')
     } catch (error) {
       console.log("Ошибка", error.message)
     }

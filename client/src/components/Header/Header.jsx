@@ -1,7 +1,15 @@
-import { Link } from "react-router";
+import { data, Link } from "react-router";
 import style from "./Header.module.css"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuth } from "../../Context/AuthContext";
 
 function Header() {
+  const {user, checkAuth} = useAuth()
+      useEffect(()=>{
+        checkAuth()
+    },[])
+  
   return (
     <div className={style.wrapper}>
       <div className={style.logo}>
@@ -16,10 +24,17 @@ function Header() {
           <Link><li>About</li></Link>
         </ul>
       </nav>
-      <div className={style.auth}>
-        <Link to={"/login"}><button className={style.login}>Log in</button></Link>
-        <Link to={"/register"}><button className={style.register}>Register</button></Link>
-      </div>
+      {!user ?
+        <div className={style.auth}>
+          <Link to={"/login"}><button className={style.login}>Log in</button></Link>
+          <Link to={"/register"}><button className={style.register}>Register</button></Link>
+        </div>
+      :
+        <div className={style.profile}>
+          <Link to={"/cart"}><img src="../../cart.svg" alt="cart" /></Link>
+          <Link to={"/profile"}><img src="../../public/profile.svg" alt="profile" /></Link>
+        </div>
+      }
     </div>
   )
 }

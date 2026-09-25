@@ -1,9 +1,10 @@
 .wrapper{
-    margin-top: 48px;
+    margin: 24px auto ;
     display: flex;
     height: 59px;
     justify-content: space-between;
     align-items: center;
+    max-width: 1440px;
 }
 
 .logo{
@@ -21,6 +22,7 @@
     border-radius: 25px;
     height: 59px;
     width: 100%;
+    max-width: 284px;
     padding: 22px 15px;
     font-size: 18px;
 }
@@ -80,4 +82,9 @@
 
 .register:hover{
     transform: scale(1.04);
+}
+
+.profile{
+    display: flex;
+    gap: 30px;
 }

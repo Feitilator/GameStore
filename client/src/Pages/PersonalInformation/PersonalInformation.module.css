@@ -1,0 +1,6 @@
+.wrapper{
+    max-width: 1440px;
+    margin: 146px auto 0;
+    display: flex;
+    justify-content: space-between;
+}

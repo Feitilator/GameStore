@@ -3,24 +3,25 @@
     margin: 0 auto;
 }
 
-.image-container {
-  position: relative;
-  display: inline-block; /* подгоняем контейнер по размеру картинки */
-}
-
-.image-container img {
-  display: block;
-  width: 100%;
+.hero__image{
+  width: 100%; /* или ваша фиксированная ширина */
+  max-width: 1440px;
   height: auto;
-}
-
-.image-container::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%; /* высота затемненной зоны (половина картинки) */
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
-  pointer-events: none; /* чтобы клики проходили сквозь затемнение */
+  
+  /* Маска для создания полупрозрачных краев сверху и снизу */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,    /* Верхний край: 30% видимости */
+    rgba(0, 0, 0, 1) 20%,     /* Переход к 100% видимости на 20% высоты */
+    rgba(0, 0, 0, 1) 80%,     /* Центр полностью видимый до 80% высоты */
+    rgba(0, 0, 0, 0) 100%   /* Нижний край: 30% видимости */
+  );
+  
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }

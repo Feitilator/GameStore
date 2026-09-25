@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use('/api/auth', require('./Router/authRoutes'))
-
+app.use('/api/profile',require('./Router/profileRoutes'))
 
 app.listen(process.env.PORT, "0.0.0.0", () =>{
     console.log(`http://localhost:${process.env.PORT}`)

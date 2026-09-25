@@ -32,8 +32,8 @@ const login = async (req,res) =>{
         const Match = bcrypt.compare(password, user.password)
         if(!Match) return res.status(400).json({msg: "Неверные данные"})
         
-        const token = jwt.sign({name: user.name, id: user.id}, process.env.JWT_SECKRET_KEY, {expiresIn: '1h'})    
-        res.cookie("token",token)
+        const token = jwt.sign({name: user.name, id: user.id, role: user.role}, process.env.JWT_SECKRET_KEY, {expiresIn: '1h'})    
+        res.cookie("token",token, {httpOnly: true})
         res.status(200).json({msg: "Вход успешен", token})
 
     } catch (error) {
