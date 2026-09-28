@@ -29,10 +29,9 @@ const login = async (req,res) =>{
         const [[user]] = await db.query("SELECT * FROM users WHERE name = ?", [name])
         if(!user) return res.status(400).json({msg: "Неверные данные"})
         
-        const Match = bcrypt.compare(password, user.password)
+        const Match = await bcrypt.compare(password, user.password)
         if(!Match) return res.status(400).json({msg: "Неверные данные"})
-        
-        const token = jwt.sign({name: user.name, id: user.id, role: user.role}, process.env.JWT_SECKRET_KEY, {expiresIn: '1h'})    
+        const token = jwt.sign({name: user.name, id: user.id, role: user.role}, process.env.JWT_SECKRET_KEY, {expiresIn: '24h'})    
         res.cookie("token",token, {httpOnly: true})
         res.status(200).json({msg: "Вход успешен", token})
 
@@ -42,4 +41,9 @@ const login = async (req,res) =>{
     }
 }
 
-module.exports = {register, login}
+const logout = (req,res) =>{
+    res.clearCookie("token")
+    res.status(200).json({msg: "Выход успешен"})
+}
+
+module.exports = {register, login, logout}

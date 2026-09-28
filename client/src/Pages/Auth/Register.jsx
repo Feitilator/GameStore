@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router";
 import style from "./Auth.module.css"
 import { useState } from "react";
-import axios from "axios";
+import api from "../../api/axios";
 
 function Register() {
   const nav = useNavigate()
-
+  const [message, setMessage] = useState('')
   const [show, setShow] = useState(false)  
   const [data, setData] = useState({
     name: "",
@@ -14,13 +14,14 @@ function Register() {
   const handleRegister = async (event) =>{
     event.preventDefault()
     try {
-      const response = await axios.post('/api/auth/register',data,{
+      const response = await api.post('/auth/register',data,{
         headers:{
           "Content-Type": "application/json"
         }
       })
       nav('/login')
     } catch (error) {
+      setMessage(error.response?.data?.message || "Произошла ошибка")
       console.log("Ошибка", error.message)
     }
   }
@@ -39,6 +40,7 @@ function Register() {
                     <img src={show ? '../../public/eye-open.png' : '../../public/hide.png'} alt="eye" />
                 </button>
             </div>
+            <p style={{color: "red"}}>{message}</p>
             <button type="submit" className={style.btn}>Submit</button>
           </form>
           <p className={style.p}>Already have an account? <Link to={"/login"}><b className={style.b}>Log in</b></Link></p>

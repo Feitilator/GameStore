@@ -14,6 +14,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/api/auth', require('./Router/authRoutes'))
 app.use('/api/profile',require('./Router/profileRoutes'))
+app.use('/api/admin',require('./Router/adminRoutes'))
 
 app.listen(process.env.PORT, "0.0.0.0", () =>{
     console.log(`http://localhost:${process.env.PORT}`)

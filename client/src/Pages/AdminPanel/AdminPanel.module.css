@@ -1,0 +1,50 @@
+.wrapper{
+    max-width: 1440px;
+    margin: 146px auto 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block{
+    background-color: #1B1A55;
+    max-width: 860px ;
+    width: 100%;
+    padding: 35px;
+    border-radius: 25px;
+    height: 649px;
+}
+
+.button{
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 25px;
+    padding: 10px;
+    max-width: 100px;
+    width: 100%;
+    height: 45px;
+    cursor: pointer;
+}
+
+.gamesContainer{
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.gameCard{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.gameCard button{
+    background-color: white;
+    border: 0;
+    border-radius: 25px;
+    color: #1B1A55;
+    padding: 10px;
+    cursor: pointer;
+}
