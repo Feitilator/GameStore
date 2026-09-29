@@ -8,6 +8,7 @@ import PersonalInformation from './Pages/PersonalInformation/PersonalInformation
 import ProtectedRoute from './Layout/ProtectedRoute';
 import RoleRoute from './Layout/RoleRoute';
 import AdminPanel from './Pages/AdminPanel/AdminPanel';
+import CreateGame from './Pages/CreateGame/CreateGame';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
             <Route element={<RoleRoute allowedRoles={["admin"]} />}>
               <Route path="/admin" element={<AdminPanel/>} />
+              <Route path="/createGame" element={<CreateGame/>} />
             </Route>
           </Route>
         </Route>

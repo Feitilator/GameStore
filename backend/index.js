@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const CookieParser = require('cookie-parser')
 require('dotenv').config()
+const path = require('path')
 
 app.use(CookieParser())
 app.use(cors({
@@ -11,6 +12,7 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use("/uploads", express.static(path.join(__dirname, 'uploads')))
 
 app.use('/api/auth', require('./Router/authRoutes'))
 app.use('/api/profile',require('./Router/profileRoutes'))

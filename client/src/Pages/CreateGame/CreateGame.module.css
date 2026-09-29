@@ -1,0 +1,60 @@
+.wrapper{
+    max-width: 1440px;
+    margin: 90px auto 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block{
+    background-color: #1B1A55;
+    max-width: 1440px ;
+    width: 100%;
+    padding: 35px;
+    border-radius: 25px;
+    height: 749px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.previos{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    gap: 10px;
+    
+}
+
+.form input, .form textarea{
+    background-color: #00000000;
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.form button{
+    width: 159px;
+    border: 0;
+    border-radius: 25px;
+    padding: 10;
+    background-color: white;
+    color: #1B1A55;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    cursor: pointer;
+    transition: color .2s, background-color .2s;
+}
+
+.form button:hover{
+    background-color: #535C91;
+    color: white;
+}
