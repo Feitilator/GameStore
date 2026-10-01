@@ -1,9 +1,13 @@
 import style from './Home.module.css'
+import Hero from '../../components/HomeComponents/Hero/Hero';
 
 function Home() {
+
+
   return (
     <div className={style.wrapper}>
-      <img src="../../public/TheLastOfUs.png" alt="image" className={style.hero__image}/>
+      <Hero />
+      
     </div>
   )
 }

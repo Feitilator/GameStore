@@ -35,7 +35,7 @@ function CreateGame() {
             formData.append("images", image)
         })
         try {
-            const response = await api.post("/admin/creategame", formData)
+            const response = await api.post("/admin/game", formData)
             nav('/admin')
         } catch (error) {
             console.log(error.response?.data?.msg || "Ошибка")
@@ -46,10 +46,10 @@ function CreateGame() {
         <div className={style.block}>
             <Link to={"/admin"}><img src="back.svg" /> Back </Link>
             <form className={style.form} onSubmit={handleSumbit}>
-                <input type="text" placeholder="Название" value={data.title} onChange={(e) => setData({...data, title: e.target.value})} />
-                <textarea width={500} style={{resize:"none"}} placeholder="Описание" value={data.description} onChange={(e) => setData({...data, description: e.target.value})} />
-                <input type="number" placeholder="Цена" value={data.price} onChange={(e) => setData({...data, price: e.target.value})} />
-                <input type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={handleImages}/>
+                <input type="text" placeholder="Название" value={data.title} onChange={(e) => setData({...data, title: e.target.value})} required/>
+                <textarea width={500} style={{resize:"none"}} placeholder="Описание" value={data.description} onChange={(e) => setData({...data, description: e.target.value})} required/>
+                <input type="number" placeholder="Цена" value={data.price} onChange={(e) => setData({...data, price: e.target.value})} required/>
+                <input type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={handleImages} required/>
                 <div className={style.previos}>
                     {images.map((image,index) => (
                         <img 

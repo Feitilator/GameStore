@@ -1,5 +1,6 @@
+const path = require('path');
 const db = require('../Database/db')
-
+const fs = require("fs")
 
 const gamesList = async (req,res) =>{
     try {
@@ -56,4 +57,26 @@ const createGame = async (req,res) =>{
     }
 }
 
-module.exports = {gamesList,usersList,deleteUser,createGame}
+const deleteGame = async (req,res) =>{
+    try {
+        const {id} = req.params
+        const [images] = await db.query("SELECT image FROM games_image WHERE gameId = ?",[id])
+        for(let image of images){
+            const filePath = path.join(__dirname, "..",image.image)
+            
+            if(fs.existsSync(filePath)){
+                fs.unlinkSync(filePath)
+            }
+        }
+
+        const [result] = await db.query("DELETE FROM games WHERE id = ?",[id])
+        if(!result) return res.status(404).json({msg:"Игра не найдена"})
+
+        return res.status(200).json({msg: "Игра удалена"})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({msg: "Ошибка удаление игры"})
+    }
+}
+
+module.exports = {gamesList,usersList,deleteUser,createGame,deleteGame}

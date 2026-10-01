@@ -1,27 +1,5 @@
 .wrapper{
-    max-width: 1440px;
-    margin: 0 auto;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-.hero__image{
-  width: 100%; /* или ваша фиксированная ширина */
-  max-width: 1440px;
-  height: auto;
-  
-  /* Маска для создания полупрозрачных краев сверху и снизу */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,    /* Верхний край: 30% видимости */
-    rgba(0, 0, 0, 1) 20%,     /* Переход к 100% видимости на 20% высоты */
-    rgba(0, 0, 0, 1) 80%,     /* Центр полностью видимый до 80% высоты */
-    rgba(0, 0, 0, 0) 100%   /* Нижний край: 30% видимости */
-  );
-  
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 20%,
-    rgba(0, 0, 0, 1) 80%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}

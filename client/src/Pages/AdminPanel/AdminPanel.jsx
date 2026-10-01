@@ -8,14 +8,22 @@ function AdminPanel() {
     const [games, setGames] = useState([])
     const [users, setUsers] = useState([])
 
-    const deleteHandle = async (id) =>{
+    const deleteUser = async (id) =>{
         try {
-            const response = await api.delete(`admin/deleteuser/${id}`)
+            const response = await api.delete(`admin/user/${id}`)
             setUsers((prev) => prev.filter((user) => user.id !== id))
-            console.log(response)
         } 
         catch (error) {
             console.log(error)
+        }
+    }
+
+    const deleteGame = async (id) =>{
+        try {
+            await api.delete(`admin/game/${id}`)
+            setGames((prev) => prev.filter((game) => game.gameId !== id))
+        } catch (error) {
+            console.log(error.response?.data?.msg || "Ошибка удаление")
         }
     }
 
@@ -23,10 +31,8 @@ function AdminPanel() {
     useEffect(() =>{
         const gameHandler = async () =>{
             try {
-                const response = await api.get('/admin/gameslist')    
-                setGames(response.data.games)
-                console.log(response.data.games)
-                
+                const response = await api.get('/admin/games')    
+                setGames(response.data.games)   
             } catch (error) {
                 console.log(error)
             }
@@ -36,7 +42,7 @@ function AdminPanel() {
     useEffect(() =>{
         const userHandler = async () =>{
             try {
-                const response = await api.get("/admin/userslist")
+                const response = await api.get("/admin/users")
                 setUsers(() => response.data.users.filter((user) => user.role !== "admin" ) )
             } catch (error) {
                 console.log(error)
@@ -68,7 +74,7 @@ function AdminPanel() {
                         <p>{game.price}₸</p>
 
                         <button>Редактировать</button>
-                        <button>Удалить</button>
+                        <button onClick={() => deleteGame(game.gameId)}>Удалить</button>
                     </div>
                 )) : <h1>Nothing</h1>
                 :
@@ -76,7 +82,7 @@ function AdminPanel() {
                     <div className={style.gameCard} key={user.id}>
                         <h3>ID:  {user.id}</h3>
                         <h3>Name:  {user.name}</h3>
-                        <button onClick={() => deleteHandle(user.id)}>Удалить</button>
+                        <button onClick={() => deleteUser(user.id)}>Удалить</button>
                     </div>
                     
                 ))

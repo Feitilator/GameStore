@@ -5,7 +5,7 @@ function Layout() {
   return (
     <div>
         <Header />
-        <main>
+        <main style={{maxWidth: 1440, margin: "0 auto"}}>
             <Outlet />
         </main>
     </div>
